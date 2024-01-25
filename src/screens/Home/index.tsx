@@ -4,6 +4,7 @@ import { api } from "../../services/api";
 import { ScrollView, Text } from "react-native";
 import { CardPerson } from "../../components/CardPerson";
 import axios from "axios";
+import { InputSearch } from "../../components/InputSearch";
 
 interface InfoProps {
   count: number;
@@ -33,6 +34,11 @@ interface ResponsePerson {
 export function Home() {
   const [person, setPerson] = useState<ResponsePerson>({});
   const [page,setPage] = useState(1)
+
+
+
+
+  
   useEffect(() => {
     async function getPerson() {
       const response = await api.get(`/character?page=${page}`);
@@ -55,9 +61,10 @@ export function Home() {
      setPage(prev=> prev + 1)
 
   }
-
   return (
     <Container>
+
+      <InputSearch />
       <List
         data={person.results}
         keyExtractor={(item) => item.id}
