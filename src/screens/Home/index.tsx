@@ -1,54 +1,82 @@
-import React, { useEffect, useState } from "react"
-import {Container,Title} from "./styled"
-import { api } from "../../services/api"
-import { ScrollView } from "react-native"
-import { CardPerson } from "../../components/CardPerson"
+import React, { useEffect, useState } from "react";
+import { Container, List, Title } from "./styled";
+import { api } from "../../services/api";
+import { ScrollView, Text } from "react-native";
+import { CardPerson } from "../../components/CardPerson";
+import axios from "axios";
 
+interface InfoProps {
+  count: number;
+  pages: number;
+  next: string;
+  prev: string;
+}
 
-interface ResponsePerson {
+interface PersonProps {
   name: string;
   id: number;
   species: string;
-  gender:string;
+  gender: string;
   image: string;
   status: string;
   location: {
     name: string;
-  }
-
+  };
 }
 
-export function Home () {
-const [person,setPerson] = useState<ResponsePerson[]>([])
-  useEffect(() => {
-    async function getPerson () {
-     const response = await api.get("/character")
+interface ResponsePerson {
+  info: InfoProps;
+  results: PersonProps[];
+}
 
-    //  console.log(response.data.results[1])
-     setPerson(response.data.results)
+export function Home() {
+  const [person, setPerson] = useState<ResponsePerson>({});
+  const [page,setPage] = useState(1)
+  useEffect(() => {
+    async function getPerson() {
+      const response = await api.get(`/character?page=${page}`);
+
+      if(page > 1){
+        const cloneResponse = person.results.concat(response.data.results)
+        setPerson({info:response.data.info,results:cloneResponse});
+        return;
+      }
+      setPerson(response.data);
     }
 
-    getPerson()
-  },[])
+    getPerson();
+  }, [page]);
 
+  const updateList = async () => {
+    if(person.info.next === null) return;
+      
+
+    console.log(page)
+     setPage(prev=> prev + 1)
+
+  }
 
   return (
     <Container>
-      <Title>New Project</Title>
-     
-     <ScrollView>
-       {person.map(person => (
-        <CardPerson 
-        key={person.id}
-        species={person.species}
-        status={person.status}
-        gender={person.gender}
-        location={person.location.name}
-        name={person.name}
-        image={person.image}
-        />
-       ))}
-     </ScrollView>
+      <List
+        data={person.results}
+        keyExtractor={(item,index) => item.id}
+        onEndReached={updateList}
+        renderItem={({ item }: { item: PersonProps }) => {
+          return (
+            <CardPerson
+              key={item.id}
+              species={item.species}
+              status={item.status}
+              gender={item.gender}
+              location={item.location.name}
+              name={item.name}
+              image={item.image}
+            />
+          );
+        }}
+      />
+
     </Container>
-  )
+  );
 }

@@ -17,7 +17,6 @@ export function ImageCharacterDetails ({characters}:EpisodeDetails){
   const patternChareacters = /\/character\/(\d+)$/
   const numbersAfterCharecters = characters?.map(url => url.match(patternChareacters)[1]).map(number => Number(number));
 
-  console.log(numbersAfterCharecters)
   const responseCharacter =  await api.get(`character/${numbersAfterCharecters}`)
 
 
