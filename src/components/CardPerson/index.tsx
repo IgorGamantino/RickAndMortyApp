@@ -16,10 +16,10 @@ export function CardPerson({name,image,status,species,gender,location}:CardPerso
     <Image source={{uri: image}} />
     <Content>
     <Name>{name}</Name>
-     <Status> {`Status: ${status}`}</Status>
-     <Species>{`Species: ${species}`}</Species>
-     <Gender>{`Gender: ${gender}`}</Gender>
-     <Location>{`Location: ${location}`}</Location>
+     <Status> Status: {status}</Status>
+     <Species>Species: {species}</Species>
+     <Gender>Gender: {gender}</Gender>
+     <Location>Location: {location}</Location>
     </Content>
   </Container>
   )
