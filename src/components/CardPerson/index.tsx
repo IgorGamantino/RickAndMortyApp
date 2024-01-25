@@ -1,18 +1,39 @@
+import { useNavigation } from "@react-navigation/native";
 import {Container,Image, Content,Name, Status, Species,Gender,Location} from "./styled"
 
 interface CardPersonProps {
+  id:  number;
   name: string;
   image: string
   status: string;
   species:string;
   gender: string;
-  location: string
-
+  location: string;
+  episodes: string[];
 }
 
-export function CardPerson({name,image,status,species,gender,location}:CardPersonProps){
+export function CardPerson({name,image,status,species,gender,location,episodes,id}:CardPersonProps){
+ const navigation = useNavigation();
+
+
+
+ const handleNavigationDetails = () => {
+  navigation.navigate("DetailsPerson",{
+    image,
+    status,
+    species,
+    gender,
+    location,
+    name,
+    episodes,
+    id
+  })
+    
+ }
+
+
   return (
-    <Container>
+    <Container onPress={handleNavigationDetails}>
     <Image source={{uri: image}} />
     <Content>
     <Name>{name}</Name>

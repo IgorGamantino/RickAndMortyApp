@@ -19,6 +19,7 @@ interface PersonProps {
   gender: string;
   image: string;
   status: string;
+  episode: string[]
   location: {
     name: string;
   };
@@ -51,7 +52,6 @@ export function Home() {
     if(person.info.next === null) return;
       
 
-    console.log(page)
      setPage(prev=> prev + 1)
 
   }
@@ -60,11 +60,13 @@ export function Home() {
     <Container>
       <List
         data={person.results}
-        keyExtractor={(item,index) => item.id}
+        keyExtractor={(item) => item.id}
         onEndReached={updateList}
         renderItem={({ item }: { item: PersonProps }) => {
           return (
             <CardPerson
+              id={item.id}
+              episodes={item.episode}
               key={item.id}
               species={item.species}
               status={item.status}

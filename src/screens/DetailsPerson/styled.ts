@@ -8,9 +8,8 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const Header = styled.View`
-  gap: 10px;
-  paddingHorizontal: 20px;
-  align-items: center;
+margin-top: 10px;
+align-items: center;
 `;
 
 export const TopHeader = styled.View`
@@ -111,5 +110,14 @@ export const ContainerNameEpisodeAndImg = styled.View``;
 export const ImageEpisode = styled.Image`
   width: 120px;
   height: 120;
+
+`;
+
+export const ButtonFavorite = styled.TouchableOpacity`
+  padding: 10px;
+`;
+
+export const ButtonGoBack = styled.TouchableOpacity`
+ padding:10px;
 
 `;

@@ -8,17 +8,39 @@ import 'react-native-gesture-handler';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Favorite } from './src/screens/Favorite';
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+
+
+
+function HomeStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={Home} options={
+        {
+          header: () => null
+        }
+      } />
+      <Stack.Screen name="DetailsPerson"  component={DetailsPerson} />
+    </Stack.Navigator>
+  );
+}
 
 
 export default function App() {
   return (
     <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="DetailsPerson" component={DetailsPerson} />
-    </Stack.Navigator>
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeStack} options={{
+        header:() => null
+      }}/>
+      <Tab.Screen name="Favorite" component={Favorite} options={{
+        header: () => null
+      }} />
+    </Tab.Navigator>
     </NavigationContainer>
   );
 }
