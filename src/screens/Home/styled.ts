@@ -7,8 +7,6 @@ export const Container = styled.SafeAreaView`
   align-items: center;
 `;
 
-export const List = styled.FlatList``;
-
 export const Title = styled.Text`
    color: #BF4F74;
 `;

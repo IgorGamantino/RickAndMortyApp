@@ -1,7 +1,5 @@
 import { createContext, useState } from "react";
 
-
-
 export const FavoriteContext = createContext({} as FavoriteContextProp);
 
 interface FavoriteContextProp {
