@@ -1,12 +1,5 @@
 
-
-<img src="./src/assets/app.gif"/>
-
-
- <h4>
-  Eu escolhi fazer o teste do Ricky and Morty (RMApp), porque eu conhecia um pouco da animação, a aplicação foi criada com expo e typescript. <br/>
-  </h4>
-
+<img  src="./src/assets/app.gif"/>
 
   <h3> 
    Para rodar a aplicação deve seguir alguns passos.

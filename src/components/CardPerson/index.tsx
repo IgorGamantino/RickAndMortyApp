@@ -5,14 +5,14 @@ import { PersonProps } from "../../utils/types";
 
 
 export const CardPerson = memo((props: PersonProps) => {
-  const navigation = useNavigation();
+  const {navigate} = useNavigation();
 
   const handleNavigationDetails = useCallback(() => {
-    navigation.navigate('DetailsPerson', props) ;
+    navigate('DetailsPerson', props) ;
   },[])
 
   return (
-    <Container onPress={handleNavigationDetails}>
+    <Container testID="button-navigation" onPress={handleNavigationDetails}>
     <Image source={{uri: props.image}} />
     <Content>
     <Name>{props.name}</Name>
